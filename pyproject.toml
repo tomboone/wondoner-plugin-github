@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "wondoner-plugin-github"
+version = "0.1.0"
+description = "Wondoner plugin for GitHub integration."
+authors = ["Your Name <you@example.com>"] # Replace with your details
+license = "MIT" # Or your chosen license
+readme = "README.md"
+# Tells Poetry to look inside the 'src' directory for the 'wondoner' package
+packages = [{ include = "wondoner", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0" # Make sure this matches your environment
+# Use path dependency if interfaces package is local and not published
+# Adjust path as needed relative to this pyproject.toml
+wondoner-interfaces = { path = "../wondoner-interfaces", develop = true }
+# OR if published:
+# wondoner-interfaces = ">=0.1.0,<0.2.0"
+httpx = ">=0.25.0,<0.28.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = ">=7.0.0,<9.0.0"
+pytest-asyncio = ">=0.18.0,<0.24.0"
+respx = ">=0.20.0,<0.22.0"
+pytest-mock = ">=3.10.0,<4.0.0"
+
+# --- Poetry Plugin Section for Entry Point ---
+[tool.poetry.plugins."wondoner.interfaces"]
+github = "wondoner.plugin_github.plugin:GitHubPlugin"
+
+# --- Pytest Configuration Section (NO pythonpath) ---
+[tool.pytest.ini_options]
+# pythonpath removed as poetry run should handle it
+testpaths = [
+    "tests",
+]
+asyncio_mode = "auto"
+# addopts = "-ra -q --strict-markers" # Example other options if desired
+
+# --- Build System Definition ---
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+# --- Ensure no conflicting [project] section remains ---
+# (Except maybe [project.entry-points] if needed for non-Poetry tools,
+# but [tool.poetry.plugins] is preferred when using Poetry)
