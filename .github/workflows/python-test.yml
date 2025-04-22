@@ -30,15 +30,20 @@ jobs:
         python-version: ${{ matrix.python-version }}
         cache: 'pip' # Cache pip dependencies to speed up installs
 
-    - name: Install dependencies
+    - name: Install Poetry
       run: |
-        python -m pip install --upgrade pip
-        # Install the package itself in editable mode + test dependencies
-        pip install -e .[test]
+        python -m pip install --upgrade pip poetry
+        # Optional: Configure Poetry to not create virtualenvs if you prefer
+        # poetry config virtualenvs.create false --local
+
+    - name: Install dependencies using Poetry
+      run: |
+        # Installs base dependencies + 'test' group dependencies
+        poetry install --with test
 
     #----------------------------------------------
     #              Run tests
     #----------------------------------------------
     - name: Run tests with pytest
       run: |
-        pytest # Discovers and runs tests in the 'tests' directory
+        poetry run pytest # Discovers and runs tests in the 'tests' directory

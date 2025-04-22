@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wondoner-plugin-github"
-version = "0.1.0"
+version = "0.1.1"
 description = "Wondoner plugin for GitHub integration."
 authors = ["Your Name <you@example.com>"] # Replace with your details
 license = "MIT" # Or your chosen license
