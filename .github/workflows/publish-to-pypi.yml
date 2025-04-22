@@ -1,0 +1,42 @@
+#file: noinspection UndefinedAction
+
+name: Publish Python Package to PyPI
+
+# Run only when a tag matching v*.*.* (e.g., v0.1.1) is pushed
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # Grant permissions for GitHub's OIDC token (required for trusted publishing)
+    permissions:
+      id-token: write
+
+    # Link job to the GitHub Environment configured on PyPI (Optional but Recommended)
+    environment:
+       name: pypi
+       url: https://pypi.org/p/wondoner-plugin-github # Optional: Link to package page
+
+    steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11' # Or your preferred build version
+
+    - name: Install build dependencies
+      run: python -m pip install --upgrade build
+
+    - name: Build package
+      run: python -m build
+
+    - name: Publish package distributions to PyPI
+      # Use official action, it handles OIDC automatically via permissions
+      uses: pypa/gh-action-pypi-publish@release/v1
+      # No username/password/token needed here due to Trusted Publishing
