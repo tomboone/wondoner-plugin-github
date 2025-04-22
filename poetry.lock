@@ -267,17 +267,15 @@ description = "Interfaces and standard models for the Wondoner plugin system."
 optional = false
 python-versions = ">=3.11"
 groups = ["main"]
-files = []
-develop = true
+files = [
+    {file = "wondoner_interfaces-0.1.5-py3-none-any.whl", hash = "sha256:f3dd4c4b0bd6d34fa166a5ff3759d4de504a2c08137f1ac3a57227d685ea5b67"},
+    {file = "wondoner_interfaces-0.1.5.tar.gz", hash = "sha256:d33180e9da9660d5f3f140476b26e884a6d1dd95d80516dc8d9e40b92b9693c5"},
+]
 
 [package.extras]
 test = ["pytest (>=7.0.0,<9.0.0)", "pytest-asyncio (>=0.18.0,<0.24.0)"]
 
-[package.source]
-type = "directory"
-url = "../wondoner-interfaces"
-
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "920bcc3ea7d0e5e42badcae26557d9232278a3c6f726e8064b4c138c90eb591d"
+content-hash = "70a56702c2d206e180ae10aaea6c89cebcf6f089b2139458e3a321c813e43099"
