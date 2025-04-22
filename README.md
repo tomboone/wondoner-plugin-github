@@ -1,5 +1,7 @@
 # Wondoner GitHub Plugin
 
+![PyPI - Version](https://img.shields.io/pypi/v/wondoner-plugin-github) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A plugin for the **Wondoner** task aggregator that enables integration with GitHub Issues.
 
 This allows Wondoner to sync tasks based on issues within specified GitHub repositories.
