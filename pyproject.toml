@@ -12,6 +12,9 @@ packages = [{ include = "wondoner", from = "src" }]
 python = ">=3.11,<4.0"
 wondoner-interfaces = ">=0.1.5,<0.2.0"
 httpx = ">=0.25.0,<0.28.0"
+pipdeptree = "^2.26.1"
+h11 = "^0.16.0"
+httpcore = "^1.0.9"
 
 [tool.poetry.group.test.dependencies]
 pytest = ">=7.0.0,<9.0.0"
